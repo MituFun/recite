@@ -1,4 +1,5 @@
 'use client'
+
 import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 
@@ -8,41 +9,40 @@ interface DisplayWindowProps {
 }
 
 export default function DisplayWindow({ text, onReset }: DisplayWindowProps) {
-    const [displayedText, setDisplayedText] = useState('');
-    const [currentIndex, setCurrentIndex] = useState(-1);
-    const [isComplete, setIsComplete] = useState(false);
+    const [displayedText, setDisplayedText] = useState('')
+    const [currentIndex, setCurrentIndex] = useState(-1)
+    const [isComplete, setIsComplete] = useState(false)
 
     useEffect(() => {
         const handleKeyPress = (event: KeyboardEvent) => {
             if (event.code === 'Space' && !isComplete) {
-                event.preventDefault();
-                showNextCharacter();
+                event.preventDefault()
+                showNextCharacter()
             }
-        };
-        window.addEventListener('keydown', handleKeyPress);
+        }
+
+        window.addEventListener('keydown', handleKeyPress)
         return () => {
-            window.removeEventListener('keydown', handleKeyPress);
-        };
-    }, [currentIndex, isComplete, text, showNextCharacter]);
+            window.removeEventListener('keydown', handleKeyPress)
+        }
+    }, [currentIndex, isComplete, text])
 
     const showNextCharacter = () => {
         if (currentIndex < text.length - 1) {
-            const nextIndex = currentIndex + 1;
-            // 如果需要跳过标点符号和换行符，可以取消注释以下代码
+
             // while (nextIndex < text.length && (isPunctuation(text[nextIndex]) || text[nextIndex] === '\n')) {
-            //     nextIndex++;
+            //   nextIndex++
             // }
-            setCurrentIndex(nextIndex);
-            setDisplayedText(text.slice(0, nextIndex + 1));
+
+            const nextIndex = currentIndex + 1
+            setCurrentIndex(nextIndex)
+            setDisplayedText(text.slice(0, nextIndex + 1))
+
             if (nextIndex >= text.length - 1) {
-                setIsComplete(true);
+                setIsComplete(true)
             }
         }
-    };
-
-    const isPunctuation = (char: string) => {
-        return /[，。！？、；：""''（）【】《》]/u.test(char);
-    };
+    }
 
     return (
         <motion.div
@@ -57,7 +57,7 @@ export default function DisplayWindow({ text, onReset }: DisplayWindowProps) {
           body {
             overflow: hidden;
           }
-         .overflow-y-auto::-webkit-scrollbar {
+          .overflow-y-auto::-webkit-scrollbar {
             display: none;
           }
         `}</style>
@@ -90,5 +90,6 @@ export default function DisplayWindow({ text, onReset }: DisplayWindowProps) {
                 </p>
             )}
         </motion.div>
-    );
+    )
 }
+
