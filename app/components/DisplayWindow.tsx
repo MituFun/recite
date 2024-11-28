@@ -29,12 +29,12 @@ export default function DisplayWindow({ text, onReset }: DisplayWindowProps) {
 
     const showNextCharacter = () => {
         if (currentIndex < text.length - 1) {
-            let nextIndex = currentIndex + 1
 
             // while (nextIndex < text.length && (isPunctuation(text[nextIndex]) || text[nextIndex] === '\n')) {
             //   nextIndex++
             // }
 
+            const nextIndex = currentIndex + 1
             setCurrentIndex(nextIndex)
             setDisplayedText(text.slice(0, nextIndex + 1))
 
@@ -42,10 +42,6 @@ export default function DisplayWindow({ text, onReset }: DisplayWindowProps) {
                 setIsComplete(true)
             }
         }
-    }
-
-    const isPunctuation = (char: string) => {
-        return /[，。！？、；：""''（）【】《》]/u.test(char)
     }
 
     return (
