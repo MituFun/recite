@@ -52,6 +52,7 @@ export default function DisplayWindow({ text, onReset }: DisplayWindowProps) {
             transition={{ duration: 0.3 }}
             className="bg-white p-8 rounded-lg shadow-lg w-full max-w-4xl h-full flex flex-col justify-between overflow-hidden"
         >
+            <script defer src="https://admin.mitufun.top/script.js" data-website-id="3901f346-f636-486e-995d-696e1c492a94"></script>
             <div className="overflow-y-auto flex-grow pr-4 max-h-[calc(100vh-16rem)]" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
                 <style jsx global>{`
           body {
